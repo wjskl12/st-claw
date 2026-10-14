@@ -1,0 +1,35 @@
+# SillyTavern 配置 —— Claw Cloud / 云部署适配版
+# 官方 entrypoint 启动时 npm run init 会自动补全这里没写的字段，只写要改的项。
+
+# 监听所有地址，端口 8000
+listen: true
+listenAddress:
+  ipv4: 0.0.0.0
+  ipv6: '[::]'
+port: 8000
+
+# 容器无桌面，关自动开浏览器
+browserLaunch:
+  enabled: false
+
+# 关 IP/host 白名单（云平台反向代理，靠下方账号登录保护）
+whitelistMode: false
+enableForwardedWhitelist: false
+whitelistDockerHosts: true
+hostWhitelist:
+  enabled: false
+
+# 多用户登录：首次访问注册账号，账号存 data 卷持久化
+enableUserAccounts: true
+enableDiscreetLogin: true
+
+# 信任反代头（Claw Cloud 给真实 IP）
+forwardedHeaders:
+  xRealIp: true
+  xForwardedFor: true
+
+# 跳过启动安全检查（listen + 公开 host 场景）
+securityOverride: true
+disableCsrfProtection: false
+
+dataRoot: ./data
